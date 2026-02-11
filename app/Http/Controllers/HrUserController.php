@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,6 +22,9 @@ class HrUserController extends Controller
     {
         Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page');
 
-        return view('collaborators.add-hr-user');
+        // get all departments
+        $departments = Department::all();
+
+        return view('collaborators.add-hr-user', compact('departments'));
     }
 }
