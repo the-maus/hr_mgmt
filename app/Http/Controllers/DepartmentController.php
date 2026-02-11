@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class DepartmentController extends Controller
 {
@@ -15,5 +16,27 @@ class DepartmentController extends Controller
         $departments = Department::all();
 
         return view('department.departments', compact('departments'));
+    }
+
+    public function new() : View
+    {
+        Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page');
+
+        return view('department.add-department');
+    }
+
+    public function create(Request $request)
+    {
+        Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page');
+
+        $request->validate([
+            'name' => 'required|string|max:50|unique:departments'
+        ]);
+
+        Department::create([
+            'name' => $request->name
+        ]);
+
+        return redirect()->route('departments');
     }
 }
