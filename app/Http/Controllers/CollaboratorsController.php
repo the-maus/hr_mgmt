@@ -29,8 +29,7 @@ class CollaboratorsController extends Controller
             return redirect()->route('home');
 
         $collaborator = User::with('detail', 'department')
-                                ->where('id', $id)
-                                ->first();
+                                ->findOrFail($id);
 
         return view('collaborators.show-details', compact('collaborator'));
     }
