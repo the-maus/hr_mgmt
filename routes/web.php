@@ -41,6 +41,9 @@ Route::middleware('auth')->group(function(){
     // Collaborators
     Route::get('/collaborators', [CollaboratorsController::class, 'index'])->name('collaborators.all');
     Route::get('/collaborators/details/{id}', [CollaboratorsController::class, 'showDetails'])->name('collaborators.details');
+    
+    Route::get('/collaborators/delete/{id}', [CollaboratorsController::class, 'delete'])->name('collaborators.delete');
+    Route::get('/collaborators/delete-confirm/{id}', [CollaboratorsController::class, 'deleteConfirm'])->name('collaborators.delete-confirm');
 });
     
 Route::middleware('guest')->group(function(){
