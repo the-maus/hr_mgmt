@@ -10,13 +10,13 @@
 
                     <hr>
 
-                    <form action="#" method="post">
+                    <form action="{{ route('collaborators.create') }}" method="post">
 
                         @csrf
 
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" required>
+                            <input type="text" class="form-control" value="{{ old('name') }}" id="name" name="name" required>
                             @error('name')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -24,20 +24,35 @@
 
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
+                            <input type="email" class="form-control" value="{{ old('email') }}" id="email" name="email" required>
                             @error('email')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="mb-3">
-                            <label for="select_department" class="form-label">Department</label>
-                            <select name="department" id="department" class="form-select">
-                                @foreach ($departments as $department)
-                                    <option value="{{ $department->id }}">{{ $department->name }}</option>
-                                @endforeach
-                            </select>
+                            <div class="d-flex">
+                                <div class="flex-grow-1 pe-3">
+                                    <label for="select_department" class="form-label">Department</label>
+                                    <select name="select_department" id="select_department" class="form-select">
+                                        @foreach ($departments as $department)
+                                            <option value="{{ $department->id }}">{{ $department->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('select_department')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div>
+                                    <a href="{{ route('departments.new') }}" class="btn btn-outline-primary mt-4">
+                                        <i class="fas fa-plus"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
+
+
 
                         <p class="mb-3">Profile: <strong>Human Resources</strong></p>
 

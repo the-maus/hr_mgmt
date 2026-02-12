@@ -28,4 +28,5 @@ Route::middleware('auth')->group(function(){
     // HR Collaborators
     Route::get('/hr-users', [HrUserController::class, 'index'])->name('collaborators.hr-users');
     Route::get('/hr-users/new', [HrUserController::class, 'new'])->name('collaborators.new');
+    Route::post('/hr-users/new', [HrUserController::class, 'create'])->name('collaborators.create');
 });
