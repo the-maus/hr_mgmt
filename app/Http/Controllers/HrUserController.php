@@ -13,7 +13,9 @@ class HrUserController extends Controller
     {
         Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page');
 
-        $collaborators = User::where('role', 'hr')->get();
+        $collaborators = User::with('detail')
+                            ->where('role', 'hr')
+                            ->get();
 
         return view('collaborators.hr-users', compact('collaborators'));
 
@@ -70,5 +72,33 @@ class HrUserController extends Controller
         ]);
 
         return redirect()->route('collaborators.hr-users')->with('success', 'Collaborator created successfully');
+    }
+
+    public function edit($id)
+    {
+        Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page');
+
+        $collaborator = User::with('detail')->where('role', 'hr')->findOrFail($id);
+
+        return view('collaborators.edit', compact('collaborator'));
+    }
+
+    public function update(Request $request)
+    {
+        Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page');
+
+        $request->validate([
+            'id'             => 'required|exists:users,id',
+            'salary'         => 'required|decimal:2',
+            'admission_date' => 'required|date_format:Y-m-d',
+        ]);
+
+        $user = User::findOrFail($request->id);
+        $user->detail->update([
+            'salary' => $request->salary,
+            'admission_date' => $request->admission_date,
+        ]);
+
+        return redirect()->route('collaborators.hr-users')->with('success', 'Collaborator updated successfully');
     }
 }

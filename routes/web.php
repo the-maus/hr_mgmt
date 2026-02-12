@@ -29,4 +29,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/hr-users', [HrUserController::class, 'index'])->name('collaborators.hr-users');
     Route::get('/hr-users/new', [HrUserController::class, 'new'])->name('collaborators.new');
     Route::post('/hr-users/new', [HrUserController::class, 'create'])->name('collaborators.create');
+    
+    Route::get('/hr-users/edit/{id}', [HrUserController::class, 'edit'])->name('collaborators.edit');
+    Route::post('/hr-users/edit', [HrUserController::class, 'update'])->name('collaborators.update');
 });
