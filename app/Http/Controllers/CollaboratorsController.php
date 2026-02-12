@@ -18,4 +18,19 @@ class CollaboratorsController extends Controller
 
         return view('collaborators.admin-all-collaborators')->with('collaborators', $collaborators);
     }
+
+    public function showDetails($id)
+    {
+        Auth::user()->can('admin', 'rh') ?: abort(403, 'You are not authorized to access this page');
+
+        // check if id is the same as auther user's
+        if (auth()->user()->id === $id)
+            return redirect()->route('home');
+
+        $collaborator = User::with('detail', 'department')
+                                ->where('id', $id)
+                                ->first();
+
+        return view('collaborators.show-details', compact('collaborator'));
+    }
 }

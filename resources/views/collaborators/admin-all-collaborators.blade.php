@@ -43,7 +43,7 @@
 
                             <td>
                                 <div class="d-flex gap-3 justify-content-end">
-                                    <a href="#" class="btn btn-sm btn-outline-dark ms-3">
+                                    <a href="{{ route('collaborators.details', ['id' => $collaborator->id]) }}" class="btn btn-sm btn-outline-dark ms-3">
                                         <i class="fas fa-eye"></i> Details
                                     </a>
                                     <a href="#" class="btn btn-sm btn-outline-dark ms-3">

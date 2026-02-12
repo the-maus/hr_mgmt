@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function(){
     
     // Collaborators
     Route::get('/collaborators', [CollaboratorsController::class, 'index'])->name('collaborators.all');
-    
+    Route::get('/collaborators/details/{id}', [CollaboratorsController::class, 'showDetails'])->name('collaborators.details');
 });
     
 Route::middleware('guest')->group(function(){
