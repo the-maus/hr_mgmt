@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CollaboratorsController;
 use App\Http\Controllers\ConfirmAccountController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HrUserController;
@@ -36,7 +37,10 @@ Route::middleware('auth')->group(function(){
     
     Route::get('/hr-users/delete/{id}', [HrUserController::class, 'delete'])->name('collaborators.hr.delete');
     Route::get('/hr-users/delete-confirm/{id}', [HrUserController::class, 'deleteConfirm'])->name('collaborators.hr.delete-confirm');
-
+    
+    // Collaborators
+    Route::get('/collaborators', [CollaboratorsController::class, 'index'])->name('collaborators.all');
+    
 });
     
 Route::middleware('guest')->group(function(){

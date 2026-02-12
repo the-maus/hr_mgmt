@@ -1,20 +1,17 @@
-<x-layout-app pageTitle="Human Resources">
+<x-layout-app page-title="Colaborators">
+
     <div class="w-100 p-4">
 
-        <h3>Human Resources Collaborators</h3>
+        <h3>All colaborators</h3>
 
         <hr>
 
+        <!-- table -->
         @if ($collaborators->count() === 0)
             <div class="text-center my-5">
                 <p>No collaborators found.</p>
-                <a href="{{ route('collaborators.hr.new') }}" class="btn btn-primary">Create a new collaborators</a>
             </div>
         @else
-            <div class="mb-3">
-                <a href="{{ route('collaborators.hr.new') }}" class="btn btn-primary">Create a new collaborators</a>
-            </div>
-
             <table class="table" id="table">
                 <thead class="table-dark">
                     <th>Name</th>
@@ -44,13 +41,12 @@
                             <td>{{ $collaborator->detail->admission_date }}</td>
                             <td>R$ {{ $collaborator->detail->salary }}</td>
 
-
                             <td>
                                 <div class="d-flex gap-3 justify-content-end">
-                                    <a href="{{ route('collaborators.hr.edit', ['id' => $collaborator->id]) }}" class="btn btn-sm btn-outline-dark ms-3">
-                                        <i class="fa-regular fa-pen-to-square me-2"></i>Edit
+                                    <a href="#" class="btn btn-sm btn-outline-dark ms-3">
+                                        <i class="fas fa-eye"></i> Details
                                     </a>
-                                    <a href="{{ route('collaborators.hr.delete', ['id' => $collaborator->id]) }}" class="btn btn-sm btn-outline-dark ms-3">
+                                    <a href="#" class="btn btn-sm btn-outline-dark ms-3">
                                         <i class="fa-regular fa-trash-can me-2"></i>Delete
                                     </a>
                                 </div>
@@ -60,5 +56,5 @@
                 </tbody>
             </table>
         @endif
-    </div>
+
 </x-layout-app>
