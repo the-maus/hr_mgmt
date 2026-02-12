@@ -101,6 +101,6 @@ class DepartmentController extends Controller
 
     private function isDepartmentBlocked($id)
     {
-        return in_array(intval($id), [1, 2]); // admin/hr default departments
+        return in_array(intval($id), [Department::ADMIN_DEPARTMENT, Department::HR_DEPARTMENT]); // admin/hr default departments
     }
 }

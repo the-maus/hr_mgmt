@@ -46,6 +46,10 @@ class HrUserController extends Controller
             'admission_date'    => 'required|date_format:Y-m-d'
         ]);
 
+        // check if department is default HR
+        if ($request->select_department != Department::HR_DEPARTMENT)
+            return redirect()->route('home');
+
         // create new HR user
         $user = new User();
         $user->name = $request->name;
