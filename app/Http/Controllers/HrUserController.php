@@ -101,4 +101,23 @@ class HrUserController extends Controller
 
         return redirect()->route('collaborators.hr-users')->with('success', 'Collaborator updated successfully');
     }
+
+    public function delete($id)
+    {
+        Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page');
+        
+        $collaborator = User::findOrFail($id);
+
+        return view('collaborators.delete', compact('collaborator'));
+    }
+
+    public function deleteConfirm($id)
+    {
+        Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page');
+        
+        $collaborator = User::findOrFail($id);
+        $collaborator->delete();
+
+        return redirect()->route('collaborators.hr-users')->with('success', 'Collaborator deleted successfully');
+    }
 }

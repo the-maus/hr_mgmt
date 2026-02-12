@@ -32,4 +32,7 @@ Route::middleware('auth')->group(function(){
     
     Route::get('/hr-users/edit/{id}', [HrUserController::class, 'edit'])->name('collaborators.edit');
     Route::post('/hr-users/edit', [HrUserController::class, 'update'])->name('collaborators.update');
+    
+    Route::get('/hr-users/delete/{id}', [HrUserController::class, 'delete'])->name('collaborators.delete');
+    Route::get('/hr-users/delete-confirm/{id}', [HrUserController::class, 'deleteConfirm'])->name('collaborators.delete-confirm');
 });
