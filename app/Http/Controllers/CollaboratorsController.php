@@ -12,7 +12,8 @@ class CollaboratorsController extends Controller
     {
         Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page');
 
-        $collaborators = User::with('detail', 'department')
+        $collaborators = User::withTrashed()
+                                ->with('detail', 'department')
                                 ->where('role', '<>', 'admin')
                                 ->get();
 
@@ -59,5 +60,15 @@ class CollaboratorsController extends Controller
         $collaborator->delete();
 
         return redirect()->route('collaborators.all');
+    }
+
+    public function restore($id)
+    {
+        Auth::user()->can('admin', ) ?: abort(403, 'You are not authorized to access this page');
+
+        $collaborator = User::withTrashed()->findOrFail($id);
+        $collaborator->restore();
+
+        return redirect()->route('collaborators.all')->with('success', 'Collaborator restored successfully');
     }
 }

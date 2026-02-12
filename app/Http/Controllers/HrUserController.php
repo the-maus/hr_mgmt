@@ -16,7 +16,8 @@ class HrUserController extends Controller
     {
         Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page');
 
-        $collaborators = User::with('detail')
+        $collaborators = User::withTrashed()
+                            ->with('detail')
                             ->where('role', 'hr')
                             ->get();
 
@@ -129,5 +130,15 @@ class HrUserController extends Controller
         $collaborator->delete();
 
         return redirect()->route('collaborators.hr-users')->with('success', 'Collaborator deleted successfully');
+    }
+
+    public function restore($id)
+    {
+        Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page');
+
+        $collaborator = User::withTrashed()->where('role', 'hr')->findOrFail($id);
+        $collaborator->restore();
+
+        return redirect()->route('collaborators.hr-users')->with('success', 'Collaborator restored successfully');
     }
 }

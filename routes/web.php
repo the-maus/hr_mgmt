@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function(){
     
     Route::get('/hr-users/delete/{id}', [HrUserController::class, 'delete'])->name('collaborators.hr.delete');
     Route::get('/hr-users/delete-confirm/{id}', [HrUserController::class, 'deleteConfirm'])->name('collaborators.hr.delete-confirm');
+    Route::get('/hr-users/restore/{id}', [HrUserController::class, 'restore'])->name('collaborators.hr.restore');
     
     // Collaborators
     Route::get('/collaborators', [CollaboratorsController::class, 'index'])->name('collaborators.all');
@@ -44,6 +45,7 @@ Route::middleware('auth')->group(function(){
     
     Route::get('/collaborators/delete/{id}', [CollaboratorsController::class, 'delete'])->name('collaborators.delete');
     Route::get('/collaborators/delete-confirm/{id}', [CollaboratorsController::class, 'deleteConfirm'])->name('collaborators.delete-confirm');
+    Route::get('/collaborators/restore/{id}', [CollaboratorsController::class, 'restore'])->name('collaborators.restore');
 });
     
 Route::middleware('guest')->group(function(){

@@ -46,9 +46,15 @@
                                     <a href="{{ route('collaborators.details', ['id' => $collaborator->id]) }}" class="btn btn-sm btn-outline-dark ms-3">
                                         <i class="fas fa-eye"></i> Details
                                     </a>
-                                    <a href="{{ route('collaborators.delete', ['id' => $collaborator->id]) }}" class="btn btn-sm btn-outline-dark ms-3">
-                                        <i class="fa-regular fa-trash-can me-2"></i>Delete
-                                    </a>
+                                    @if (empty($collaborator->deleted_at))
+                                        <a href="{{ route('collaborators.delete', ['id' => $collaborator->id]) }}" class="btn btn-sm btn-outline-dark ms-3">
+                                            <i class="fa-regular fa-trash-can me-2"></i>Delete
+                                        </a>
+                                    @else
+                                        <a href="{{ route('collaborators.restore', ['id' => $collaborator->id]) }}" class="btn btn-sm btn-outline-dark ms-3">
+                                            <i class="fa-solid fa-trash-arrow-up me-2"></i>Restore
+                                        </a>
+                                    @endif
                                 </div>
                             </td>
                         </tr>
