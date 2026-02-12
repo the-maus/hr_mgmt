@@ -16,7 +16,7 @@ class AdminSeeder extends Seeder
         // admin
         DB::table('users')->insert([
             'department_id' => 1,   
-            'name' => 'Administrador',
+            'name' => 'Administrator',
             'email' => 'admin@rhmangnt.com',
             'email_verified_at' => now(),
             'password' => bcrypt('Aa123456'),
@@ -41,7 +41,14 @@ class AdminSeeder extends Seeder
 
         // admin department
         DB::table('departments')->insert([
-            'name' => 'Administração',
+            'name' => 'Administration',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        // hr department
+        DB::table('departments')->insert([
+            'name' => 'Human Resources',
             'created_at' => now(),
             'updated_at' => now(),
         ]);

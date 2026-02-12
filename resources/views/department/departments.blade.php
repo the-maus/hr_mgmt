@@ -26,7 +26,7 @@
                             <td>{{ $department->name }}</td>
                             <td>
                                 <div class="d-flex gap-3 justify-content-end">
-                                    @if ($department->id === 1) {{-- admin department --}}
+                                    @if (in_array($department->id, [1, 2])) {{-- admin/hr departments --}}
                                         <i class="fa-solid fa-lock"></i>
                                     @else
                                         <a href="{{ route('departments.edit', ['id' => $department->id]) }}" class="btn btn-sm btn-outline-dark">

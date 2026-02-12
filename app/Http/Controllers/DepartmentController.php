@@ -44,8 +44,8 @@ class DepartmentController extends Controller
     {
         Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page');
 
-        // can't edit ADMIN department
-        if (intval($id) === 1)
+        // can't edit ADMIN/HR department
+        if ($this->isDepartmentBlocked($id))
             return redirect()->route('departments');
 
         $department = Department::findOrFail($id);
@@ -63,8 +63,8 @@ class DepartmentController extends Controller
             'name' => "required|string|min:3|max:50|unique:departments,name,$id"
         ]);
 
-        // can't edit ADMIN department
-        if (intval($id) === 1)
+        // can't edit ADMIN/HR department
+        if ($this->isDepartmentBlocked($id))
             return redirect()->route('departments');
 
         $department = Department::findOrFail($id);
@@ -77,7 +77,7 @@ class DepartmentController extends Controller
     {
         Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page');
 
-        if (intval($id) === 1)
+        if ($this->isDepartmentBlocked($id))
             return redirect()->route('departments');
 
         $department = Department::findOrFail($id);
@@ -90,12 +90,17 @@ class DepartmentController extends Controller
     {
         Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page');
 
-        // can't remove ADMIN department
-        if (intval($id) === 1)
+        // can't remove ADMIN/HR department
+        if ($this->isDepartmentBlocked($id))
             return redirect()->route('departments');
 
         $department = Department::findOrFail($id);
         $department->delete();
         return redirect()->route('departments');
+    }
+
+    private function isDepartmentBlocked($id)
+    {
+        return in_array(intval($id), [1, 2]); // admin/hr default departments
     }
 }
