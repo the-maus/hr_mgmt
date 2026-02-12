@@ -8,11 +8,11 @@
         @if ($collaborators->count() === 0)
             <div class="text-center my-5">
                 <p>No collaborators found.</p>
-                <a href="{{ route('collaborators.new') }}" class="btn btn-primary">Create a new collaborators</a>
+                <a href="{{ route('collaborators.hr.new') }}" class="btn btn-primary">Create a new collaborators</a>
             </div>
         @else
             <div class="mb-3">
-                <a href="{{ route('collaborators.new') }}" class="btn btn-primary">Create a new collaborators</a>
+                <a href="{{ route('collaborators.hr.new') }}" class="btn btn-primary">Create a new collaborators</a>
             </div>
 
             <table class="table" id="table">
@@ -38,10 +38,10 @@
 
                             <td>
                                 <div class="d-flex gap-3 justify-content-end">
-                                    <a href="{{ route('collaborators.edit', ['id' => $collaborator->id]) }}" class="btn btn-sm btn-outline-dark ms-3">
+                                    <a href="{{ route('collaborators.hr.edit', ['id' => $collaborator->id]) }}" class="btn btn-sm btn-outline-dark ms-3">
                                         <i class="fa-regular fa-pen-to-square me-2"></i>Edit
                                     </a>
-                                    <a href="{{ route('collaborators.delete', ['id' => $collaborator->id]) }}" class="btn btn-sm btn-outline-dark ms-3">
+                                    <a href="{{ route('collaborators.hr.delete', ['id' => $collaborator->id]) }}" class="btn btn-sm btn-outline-dark ms-3">
                                         <i class="fa-regular fa-trash-can me-2"></i>Delete
                                     </a>
                                 </div>

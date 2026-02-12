@@ -27,12 +27,12 @@ Route::middleware('auth')->group(function(){
     
     // HR Collaborators
     Route::get('/hr-users', [HrUserController::class, 'index'])->name('collaborators.hr-users');
-    Route::get('/hr-users/new', [HrUserController::class, 'new'])->name('collaborators.new');
-    Route::post('/hr-users/new', [HrUserController::class, 'create'])->name('collaborators.create');
+    Route::get('/hr-users/new', [HrUserController::class, 'new'])->name('collaborators.hr.new');
+    Route::post('/hr-users/new', [HrUserController::class, 'create'])->name('collaborators.hr.create');
     
-    Route::get('/hr-users/edit/{id}', [HrUserController::class, 'edit'])->name('collaborators.edit');
-    Route::post('/hr-users/edit', [HrUserController::class, 'update'])->name('collaborators.update');
+    Route::get('/hr-users/edit/{id}', [HrUserController::class, 'edit'])->name('collaborators.hr.edit');
+    Route::post('/hr-users/edit', [HrUserController::class, 'update'])->name('collaborators.hr.update');
     
-    Route::get('/hr-users/delete/{id}', [HrUserController::class, 'delete'])->name('collaborators.delete');
-    Route::get('/hr-users/delete-confirm/{id}', [HrUserController::class, 'deleteConfirm'])->name('collaborators.delete-confirm');
+    Route::get('/hr-users/delete/{id}', [HrUserController::class, 'delete'])->name('collaborators.hr.delete');
+    Route::get('/hr-users/delete-confirm/{id}', [HrUserController::class, 'deleteConfirm'])->name('collaborators.hr.delete-confirm');
 });
