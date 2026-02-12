@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ConfirmAccountEmail;
 use App\Models\Department;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class HrUserController extends Controller
 {
@@ -52,10 +55,14 @@ class HrUserController extends Controller
         if ($request->select_department != Department::HR_DEPARTMENT)
             return redirect()->route('home');
 
+        // create user confirmation token
+        $token = Str::random(64);
+
         // create new HR user
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->confirmation_token = $token;
         $user->role = 'hr';
         $user->department_id = $request->select_department;
         $user->permissions = '["hr"]';
@@ -70,6 +77,9 @@ class HrUserController extends Controller
             'salary'         => $request->salary,
             'admission_date' => $request->admission_date,
         ]);
+
+        // send account confirmation email to user
+        Mail::to($user->email)->send(new ConfirmAccountEmail(route('confirm-account', $token)));
 
         return redirect()->route('collaborators.hr-users')->with('success', 'Collaborator created successfully');
     }
