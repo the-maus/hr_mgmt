@@ -51,10 +51,10 @@
                                         <a href="{{ route('hr.management.edit-collaborator', ['id' => $collaborator->id]) }}" class="btn btn-sm btn-outline-dark ms-3">
                                             <i class="fa-regular fa-edit m2"></i> Edit
                                         </a>
-                                        <a href="" class="btn btn-sm btn-outline-dark ms-3">
+                                        <a href="{{ route('hr.management.delete', ['id' => $collaborator->id]) }}" class="btn btn-sm btn-outline-dark ms-3">
                                             <i class="fa-regular fa-trash-can me-2"></i>Delete
                                         </a>
-                                        <a href="" class="btn btn-sm btn-outline-dark ms-3">
+                                        <a href="{{ route('hr.management.details', ['id' => $collaborator->id]) }}" class="btn btn-sm btn-outline-dark ms-3">
                                             <i class="fas fa-eye"></i>Details
                                         </a>
                                     @else

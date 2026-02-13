@@ -126,4 +126,33 @@ class HrManagementController extends Controller
 
         return redirect()->route('hr.management.home')->with('success', 'Collaborator updated successfully');
     }
+
+    public function showDetails($id)
+    {
+        Auth::user()->can('hr') ?: abort(403, 'You are not authorized to access this page');
+
+        $collaborator = User::with('detail', 'department')->findOrFail($id);
+
+        return view('collaborators.show-details', compact('collaborator'));
+    }
+
+    public function deleteCollaborator($id)
+    {
+        Auth::user()->can('hr') ?: abort(403, 'You are not authorized to access this page');
+
+        $collaborator = User::findOrFail($id);
+
+        // display confirmation page
+        return view('collaborators.delete-collaborator', compact('collaborator'));
+    }
+
+    public function deleteCollaboratorConfirm($id)
+    {
+        Auth::user()->can('hr') ?: abort(403, 'You are not authorized to access this page');
+
+        $collaborator = User::findOrFail($id);
+        $collaborator->delete();
+
+        return redirect()->route('hr.management.home')->with('success', 'Collaborator deleted successfully');
+    }
 }

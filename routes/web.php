@@ -54,6 +54,10 @@ Route::middleware('auth')->group(function(){
     Route::post('/hr-users/management/new-collaborator', [HrManagementController::class, 'createCollaborator'])->name('hr.management.create-collaborator');
     Route::get('/hr-users/management/edit-collaborator/{id}', [HrManagementController::class, 'editCollaborator'])->name('hr.management.edit-collaborator');
     Route::post('/hr-users/management/update-collaborator/', [HrManagementController::class, 'updateCollaborator'])->name('hr.management.update-collaborator');
+    Route::get('/hr-users/management/details/{id}', [HrManagementController::class, 'showDetails'])->name('hr.management.details');
+
+    Route::get('/hr-users/management/delete/{id}', [HrManagementController::class, 'deleteCollaborator'])->name('hr.management.delete');
+    Route::get('/hr-users/management/delete-confirm/{id}', [HrManagementController::class, 'deleteCollaboratorConfirm'])->name('hr.management.delete-confirm');
 
     // All Collaborators (admin view)
     Route::get('/collaborators', [CollaboratorsController::class, 'index'])->name('collaborators.all');
