@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CollaboratorsController extends Controller
@@ -22,7 +21,7 @@ class CollaboratorsController extends Controller
 
     public function showDetails($id)
     {
-        Auth::user()->can('admin', 'rh') ?: abort(403, 'You are not authorized to access this page');
+        Auth::user()->can('admin', 'hr') ?: abort(403, 'You are not authorized to access this page');
 
         // check if id is the same as auther user's
         if (auth()->user()->id === $id)
@@ -36,7 +35,7 @@ class CollaboratorsController extends Controller
 
     public function delete($id)
     {
-        Auth::user()->can('admin', 'rh') ?: abort(403, 'You are not authorized to access this page');
+        Auth::user()->can('admin', 'hr') ?: abort(403, 'You are not authorized to access this page');
 
          // check if id is the same as auther user's
         if (auth()->user()->id === $id)
@@ -49,7 +48,7 @@ class CollaboratorsController extends Controller
 
     public function deleteConfirm($id)
     {
-        Auth::user()->can('admin', 'rh') ?: abort(403, 'You are not authorized to access this page');
+        Auth::user()->can('admin', 'hr') ?: abort(403, 'You are not authorized to access this page');
 
          // check if id is the same as auther user's
         if (auth()->user()->id === $id)
@@ -63,7 +62,7 @@ class CollaboratorsController extends Controller
 
     public function restore($id)
     {
-        Auth::user()->can('admin', ) ?: abort(403, 'You are not authorized to access this page');
+        Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page');
 
         $collaborator = User::withTrashed()->findOrFail($id);
         $collaborator->restore();
