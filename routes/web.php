@@ -52,6 +52,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/hr-users/management/home', [HrManagementController::class, 'home'])->name('hr.management.home');
     Route::get('/hr-users/management/new-collaborator', [HrManagementController::class, 'newCollaborator'])->name('hr.management.new-collaborator');
     Route::post('/hr-users/management/new-collaborator', [HrManagementController::class, 'createCollaborator'])->name('hr.management.create-collaborator');
+    Route::get('/hr-users/management/edit-collaborator/{id}', [HrManagementController::class, 'editCollaborator'])->name('hr.management.edit-collaborator');
+    Route::post('/hr-users/management/update-collaborator/', [HrManagementController::class, 'updateCollaborator'])->name('hr.management.update-collaborator');
 
     // All Collaborators (admin view)
     Route::get('/collaborators', [CollaboratorsController::class, 'index'])->name('collaborators.all');

@@ -88,4 +88,42 @@ class HrManagementController extends Controller
 
         return redirect()->route('hr.management.home')->with('success', 'Collaborator created successfully');
     }
+
+    public function editCollaborator($id)
+    {
+        Auth::user()->can('hr') ?: abort(403, 'You are not authorized to access this page');
+
+        $collaborator = User::with('detail', 'department')->findOrFail($id);
+        $departments = Department::where('id' , '>' , Department::HR_DEPARTMENT)->get();
+
+        return view('collaborators.edit-collaborator', compact('collaborator', 'departments'));
+    }
+
+    public function updateCollaborator(Request $request)
+    {
+        Auth::user()->can('hr') ?: abort(403, 'You are not authorized to access this page');
+
+        $request->validate(
+            [
+                'id' => 'required|exists:users,id',
+                'salary' => 'required|decimal:2',
+                'admission_date' => 'required|date_format:Y-m-d',
+                'select_department' => 'required|exists:departments,id'
+            ]
+        );
+
+        // cant be ADMIN|HR departments
+        if ($request->select_department <= Department::HR_DEPARTMENT)
+            return redirect()->route('home');
+
+        $user = User::with('detail')->findOrFail($request->id);
+        $user->detail->salary = $request->salary;
+        $user->detail->admission_date = $request->admission_date;
+        $user->department_id = $request->select_department;
+
+        $user->save();
+        $user->detail->save();
+
+        return redirect()->route('hr.management.home')->with('success', 'Collaborator updated successfully');
+    }
 }
