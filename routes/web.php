@@ -17,7 +17,7 @@ Route::middleware('auth')->group(function(){
         elseif (auth()->user()->role === 'hr')
             return redirect()->route('hr.management.home');
         else
-            die('normal collaborator page');
+            return redirect()->route('collaborator');
     })->name('home');
 
     // User profile page
@@ -69,6 +69,10 @@ Route::middleware('auth')->group(function(){
     Route::get('/collaborators/restore/{id}', [CollaboratorsController::class, 'restore'])->name('collaborators.restore');
     
     Route::get('/admin/home', [AdminController::class, 'home'])->name('admin.home');
+
+
+    // Normal collaboratos
+    Route::get('/collaborator', [CollaboratorsController::class, 'home'])->name('collaborator');
 });
     
 Route::middleware('guest')->group(function(){
