@@ -58,6 +58,7 @@ Route::middleware('auth')->group(function(){
 
     Route::get('/hr-users/management/delete/{id}', [HrManagementController::class, 'deleteCollaborator'])->name('hr.management.delete');
     Route::get('/hr-users/management/delete-confirm/{id}', [HrManagementController::class, 'deleteCollaboratorConfirm'])->name('hr.management.delete-confirm');
+    Route::get('/hr-users/management/restore/{id}', [HrManagementController::class, 'restoreCollaborator'])->name('hr.management.restore');
 
     // All Collaborators (admin view)
     Route::get('/collaborators', [CollaboratorsController::class, 'index'])->name('collaborators.all');

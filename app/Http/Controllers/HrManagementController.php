@@ -155,4 +155,14 @@ class HrManagementController extends Controller
 
         return redirect()->route('hr.management.home')->with('success', 'Collaborator deleted successfully');
     }
+
+    public function restoreCollaborator($id)
+    {
+        Auth::user()->can('hr') ?: abort(403, 'You are not authorized to access this page');
+
+        $collaborator = User::withTrashed()->findOrFail($id);
+        $collaborator->restore();
+
+        return redirect()->route('hr.management.home')->with('success', 'Collaborator restored successfully');
+    }
 }

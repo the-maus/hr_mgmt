@@ -58,7 +58,7 @@
                                             <i class="fas fa-eye"></i>Details
                                         </a>
                                     @else
-                                        <a href="" class="btn btn-sm btn-outline-dark ms-3">
+                                        <a href="{{ route('hr.management.restore', ['id' => $collaborator->id]) }}" class="btn btn-sm btn-outline-dark ms-3">
                                             <i class="fa-solid fa-trash-arrow-up me-2"></i>Restore
                                         </a>
                                     @endif
