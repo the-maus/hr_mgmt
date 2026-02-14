@@ -1,4 +1,4 @@
-<div class="col-6">
+<div class="col-3">
     <div class="border p-5 shadow-sm">
         <form action="{{ route('user.profile.update-data') }}" method="post">
             @csrf

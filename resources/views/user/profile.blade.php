@@ -9,6 +9,7 @@
             <div class="row">
                 <x-profile-user-change-password/>
                 <x-profile-user-change-data/>
+                <x-profile-user-change-address/>
             </div>
         </div>
     </div>

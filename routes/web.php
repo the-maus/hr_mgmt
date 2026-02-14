@@ -24,6 +24,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/user/profile', [ProfileController::class, 'index'])->name('user.profile');
     Route::post('/user/profile/update-password', [ProfileController::class, 'updatePassword'])->name('user.profile.update-password');
     Route::post('/user/profile/update-data', [ProfileController::class, 'updateData'])->name('user.profile.update-data');
+    Route::post('/user/profile/update-address', [ProfileController::class, 'updateAddress'])->name('user.profile.update-address');
 
     // Departments (admin view)
     Route::get('/departments', [DepartmentController::class, 'index'])->name('departments');
@@ -69,7 +70,6 @@ Route::middleware('auth')->group(function(){
     Route::get('/collaborators/restore/{id}', [CollaboratorsController::class, 'restore'])->name('collaborators.restore');
     
     Route::get('/admin/home', [AdminController::class, 'home'])->name('admin.home');
-
 
     // Normal collaboratos
     Route::get('/collaborator', [CollaboratorsController::class, 'home'])->name('collaborator');
