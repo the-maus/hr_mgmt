@@ -38,7 +38,7 @@
                                     <label for="select_department">Department</label>
                                     <select class="form-select" id="select_department" name="select_department">
                                         @foreach ($departments as $department)
-                                            <option value="{{ $department->id }}">{{ $department->name }}</option>
+                                            <option value="{{ $department->id }}">{{ $department?->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('select_department')

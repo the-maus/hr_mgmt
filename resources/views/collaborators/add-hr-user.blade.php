@@ -39,7 +39,7 @@
                                     <select class="form-select" id="select_department" name="select_department">
                                         @foreach ($departments as $department)
                                             @if ($department->id == 2)
-                                                <option value="{{ $department->id }}">{{ $department->name }}</option>
+                                                <option value="{{ $department->id }}">{{ $department?->name }}</option>
                                             @endif
                                         @endforeach
                                     </select>

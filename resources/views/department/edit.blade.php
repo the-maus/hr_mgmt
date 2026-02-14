@@ -10,7 +10,7 @@
             <input type="hidden" name="id" value="{{ $department->id }}">
             <div class="mb-3">
                 <label for="name" class="form-label">Department name</label>
-                <input type="text" class="form-control" id="name" name="name" required value="{{ $department->name }}">
+                <input type="text" class="form-control" id="name" name="name" required value="{{ $department?->name }}">
                 @error('name')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror

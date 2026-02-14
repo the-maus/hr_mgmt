@@ -36,7 +36,7 @@
                                 @endempty
                             </td>
 
-                            <td>{{ $collaborator->department->name }}</td>
+                            <td>{{ $collaborator->department?->name }}</td>
                             <td>{{ $collaborator->role }}</td>
                             <td>{{ $collaborator->detail->admission_date }}</td>
                             <td>R$ {{ $collaborator->detail->salary }}</td>

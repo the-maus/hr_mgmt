@@ -25,7 +25,7 @@
                         @endforeach
                     </ul>
 
-                    <p>Department: <strong>{{ $collaborator->department->name }}</strong></p>
+                    <p>Department: <strong>{{ $collaborator->department?->name }}</strong></p>
                     <p>Active: 
                         @empty($collaborator->email_verified_at)
                             <span class="badge bg-danger">No</span>
