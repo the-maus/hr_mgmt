@@ -6,8 +6,8 @@
 - [x] Test success login for hr role
 - [x] Test success login for collaborator role
 ***
-- [ ] Test new HR user creation using an admin account
-- [ ] Test new collaborator user creation using an HR account
+- [x] Test new HR user creation using an admin account
+- [x] Test new collaborator user creation using an HR account
 ***
 - [ ] Test if logged admin user can see HR collaborators page
 - [ ] Test if non-logged user can access home page
