@@ -9,8 +9,8 @@
 - [x] Test new HR user creation using an admin account
 - [x] Test new collaborator user creation using an HR account
 ***
-- [ ] Test if logged admin user can see HR collaborators page
-- [ ] Test if non-logged user can access home page
-- [ ] Test if logged user can access login page
-- [ ] Test if logged user can access password recovery page
+- [x] Test if logged admin user can see HR collaborators page
+- [x] Test if non-logged user is blocked from home page
+- [x] Test if logged user is blocked from login page
+- [x] Test if logged user is blocked from password recovery page
 
