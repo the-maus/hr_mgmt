@@ -1,7 +1,9 @@
 ## Human Resources Managment Appllication using Laravel
 Simple Example Application with Fortify (authentication) and Gates/Policies (authorization)
 
-Screens:
+### [Tests](TESTS.md)
+
+### Screens
 
 ![Admin Dashboard](/public/assets/images/admin-dashboard.png)
 
@@ -12,3 +14,4 @@ Screens:
 ![New Collaborator](/public/assets/images/new-collaborator.png)
 
 ![Collaborators List](/public/assets/images/collaborators-list.png)
+
